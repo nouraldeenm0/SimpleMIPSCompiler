@@ -1,19 +1,23 @@
 public class Main {
     
     public static void main(String[] args) {
-        StringBuilder asm = new StringBuilder(
-            "this is the first sentence\n\n"+
-            "this is the second sentence" 
-        );   
-        
-        System.out.println(asm);
+        StringBuilder code = new StringBuilder(
+            "this is the first sentence\n"+
+            "this is the second sentence"
+        );
+     
+        System.out.println(removeAllLineBreaks(code));
     }
     
     
-    public static void removeExtraLines(StringBuilder sb) {
-        boolean foundALineBreak = false;
-        for (int i = 0; i < sb.length(); ++i) {
-            foundALineBreak = (sb.charAt(i) == '\n');
+    public static StringBuilder removeAllLineBreaks(StringBuilder sb) {
+        StringBuilder ret = new StringBuilder(sb);
+        for (int i = 0; i < ret.length(); ++i) {
+            if (ret.charAt(i) == '\n') {
+                ret.deleteCharAt(i);
+                --i;
+            }
         }
+        return ret;
     }
 }
